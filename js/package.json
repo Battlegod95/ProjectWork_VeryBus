@@ -1,9 +1,0 @@
-{
-    "name": "apipostserver",
-    "description": "api post per la memorizzazione dei dati al server",
-    "authors": "zolli venier",
-    "version": "1.0.0",
-    "dependencies": {
-        "fastify": "^2.3.0"
-    }
-}
