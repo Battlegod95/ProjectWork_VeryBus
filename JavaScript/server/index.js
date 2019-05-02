@@ -3,8 +3,7 @@
 
 // creazione array statico - autobus
 var situazioneAutobus = [
-    { id: 1, StatoPorta: "True", ConteggioPersone: 0 },
-    { id: 2, StatoPorta: "False", ConteggioPersone: 2 }
+    //{ id: 1, StatoPorta: "True", ConteggioPersone: 0 , Latitudine: 0, Longitudine: 0, today:"01/01/2000", Ora: "00:00"}
 ]
 
 async function routes(fastify, options) {
@@ -18,8 +17,25 @@ async function routes(fastify, options) {
             var idR = request.body.id;
             var StatoPortaR = request.body.StatoPorta;
             var ConteggioPersoneR = request.body.ConteggioPersone;
+            var LatitudineR = request.body.Latitudine;
+            var LongitudineR = request.body.Longitudine;
+            today = new Date();
+            h =today.getHours();
+            minuti=today.getMinutes();
+            secondi=today.getSeconds();
+            giorno = today.getDate();
+            mese = today.getMonth()+1;
+            date= today.getDate();
+            year= today.getFullYear();
 
-            situazioneAutobus.push({id: idR,StatoPorta: StatoPortaR,ConteggioPersone:ConteggioPersoneR});
+            if(minuti < 10) minuti="0"+minuti;
+            if(secondi < 10) secondi="0"+secondi;
+            if(h <10) h="0"+h;
+
+        var DataA = giorno+"/"+mese+"/"+year;
+        var OraA = h+":"+minuti+":"+secondi;
+            
+            situazioneAutobus.push({id: idR,StatoPorta: StatoPortaR,ConteggioPersone: ConteggioPersoneR, Latitudine: LatitudineR, Longitudine:LongitudineR, Data: DataA, Ora: OraA});
 
             /*
             let pool = await sql.connect(config);
@@ -41,3 +57,4 @@ async function routes(fastify, options) {
 
 }
 module.exports = routes;
+
