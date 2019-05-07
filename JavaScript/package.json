@@ -4,6 +4,8 @@
     "authors": "zolli venier",
     "version": "1.0.0",
     "dependencies": {
-        "fastify": "^2.3.0"
+        "fastify": "^2.3.0",
+        "influx": "^5.0.7",
+        "influxdb-nodejs": "^3.0.0"
     }
 }
