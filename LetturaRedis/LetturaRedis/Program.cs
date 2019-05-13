@@ -27,7 +27,7 @@ namespace LetturaRedis
 
             for (int i = 0; i < 5; i++)
             {
-                Console.WriteLine("Auto 1      "+auto1.ToJson());
+                /*Console.WriteLine("Auto 1      "+auto1.ToJson());
                 System.Threading.Thread.Sleep(50);
                 Console.WriteLine("Auto 2      " + auto2.ToJson());
                 System.Threading.Thread.Sleep(50);
@@ -35,11 +35,15 @@ namespace LetturaRedis
                 System.Threading.Thread.Sleep(50);
                 Console.WriteLine("Auto 4      " + auto4.ToJson());
                 System.Threading.Thread.Sleep(50);
-                Console.WriteLine("Auto 5      " + auto5.ToJson());
+                Console.WriteLine("Auto 5      " + auto5.ToJson());*/
                 redis.LPush("key", auto1.ToJson());
+                System.Threading.Thread.Sleep(50);
                 redis.LPush("key", auto2.ToJson());
+                System.Threading.Thread.Sleep(50);
                 redis.LPush("key", auto3.ToJson());
+                System.Threading.Thread.Sleep(50);
                 redis.LPush("key", auto4.ToJson());
+                System.Threading.Thread.Sleep(50);
                 redis.LPush("key", auto5.ToJson());
                 System.Threading.Thread.Sleep(1000);
             }
