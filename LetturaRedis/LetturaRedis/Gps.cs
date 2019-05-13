@@ -9,7 +9,7 @@ namespace Simulazione_Gps
     class Gps
     {
         public Gps() { }
-
+        decimal[] posizione;
         private decimal[] PosizioneDecimale()
         {
             decimal[] posizione = new decimal[2];
@@ -25,7 +25,7 @@ namespace Simulazione_Gps
         }
         public string ToJson()
         {
-            decimal[] posizione = PosizioneDecimale();
+            posizione = PosizioneDecimale();
             string longitudine = posizione[0].ToString();
             string latitudine = posizione[1].ToString();
             longitudine.Replace(',', '.');
