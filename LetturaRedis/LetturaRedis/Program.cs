@@ -25,9 +25,9 @@ namespace LetturaRedis
 
             Autobus auto5 = new Autobus();
 
-            for (int i = 0; i < 5; i++)
+            for (int i = 0; i < 100; i++)
             {
-                /*Console.WriteLine("Auto 1      "+auto1.ToJson());
+              /*  Console.WriteLine("Auto 1      "+auto1.ToJson());
                 System.Threading.Thread.Sleep(50);
                 Console.WriteLine("Auto 2      " + auto2.ToJson());
                 System.Threading.Thread.Sleep(50);

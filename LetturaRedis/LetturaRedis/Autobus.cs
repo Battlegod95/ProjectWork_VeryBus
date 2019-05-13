@@ -30,6 +30,7 @@ namespace LetturaRedis
         
         public string ToJson()
         {
+
             string json = "{" + gps.ToJson().ToLower().Replace("{", "").Replace("}", "") + ",";
             persone.ContatorePersone(porta);
             json += persone.ToJson().Replace("{", "").ToLower().Replace("}", "").Replace(" ", "") + ",";
