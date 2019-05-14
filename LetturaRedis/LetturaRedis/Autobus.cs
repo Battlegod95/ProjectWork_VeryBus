@@ -34,7 +34,7 @@ namespace LetturaRedis
             string json = "{" + gps.ToJson().ToLower().Replace("{", "").Replace("}", "") + ",";
             persone.ContatorePersone(porta);
             json += persone.ToJson().Replace("{", "").ToLower().Replace("}", "").Replace(" ", "") + ",";
-            json += porta.ToJson().ToLower().Replace("{", "").Replace("}", "").Replace(" ", "") +","+"linea :"+linea+ "," + "targa :" + targa + "}";
+            json += porta.ToJson().ToLower().Replace("{", "").Replace("}", "").Replace(" ", "") +","+"\"linea\":"+linea+ "," + "\"targa\":" + targa + "}";
             return json;
         }
         
