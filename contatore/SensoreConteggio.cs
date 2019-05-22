@@ -4,22 +4,25 @@ namespace contatore
 {
     class SensoreConteggio
     {
-        public int n;
+        public int variazione;
         public int porta;
-        private int GetValue(int minVal)
+        private int GetValue()
         {
-      int nPersone=0;
+            int nPersone = 10;
             Random random = new Random();
-            
-            if (minVal == 0)
+
+            if (nPersone == 0)
             {
-                n = random.Next(0, 50);
+                variazione = random.Next(0, 10);
             }
             else
             {
-                n= random.Next(0,50);
+                while(variazione<=0)
+                {
+                variazione = random.Next(-5, 10);
+                }
             }
-                nPersone = nPersone+n;
+            nPersone = nPersone + variazione;
 
             return nPersone;
 
@@ -32,7 +35,7 @@ namespace contatore
 
         public string ToJson()
         {
-            return "{\"ContatorePersone\" :" + GetValue(1) + "}";
+            return "{\"ContatorePersone\" :" + GetValue() + "}";
         }
     }
 }
