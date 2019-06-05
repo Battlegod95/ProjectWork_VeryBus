@@ -23,7 +23,7 @@ namespace InvioRedis
                 //Console.WriteLine(redis.BLPop(1000, "sensors_data"));
                 //  Console.WriteLine(redis.BLPop(100, "key"));
 
-                var httpWebRequest = (HttpWebRequest)WebRequest.Create("http://127.0.0.1:3000/api/events/inserimento");
+                var httpWebRequest = (HttpWebRequest)WebRequest.Create("http://127.0.0.1:3000/api/server");
                 httpWebRequest.ContentType = "application/json";
                 httpWebRequest.Method = "POST";
 
@@ -31,7 +31,8 @@ namespace InvioRedis
                 {
                     string json = redis.BLPop(100, "key");
 
-                    streamWriter.Write(json);
+                     streamWriter.Write(json);
+                   // Console.WriteLine(json);
                     streamWriter.Flush();
                     streamWriter.Close();
                 }
