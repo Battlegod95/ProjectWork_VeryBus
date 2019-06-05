@@ -1,9 +1,13 @@
 // collegamento al db - è necessario "npm install --save influx"
 const sql = require('influx');
+const module = require('./module.js');
+let host = module.host();
+let database = module.database();
+
 //const influx = new sql.InfluxDB('http://Verybus:password@192.168.101.74:8086/Verybus');
 const influx = new sql.InfluxDB({
-    host: '192.168.101.74:8086',
-    database: 'Verybus',
+    host: host,
+    database: database,
     schema: [
       {
         measurement: 'DatiAutobus',
@@ -64,4 +68,3 @@ async function routes(fastify, options) {
 
 }
 module.exports = routes;
-

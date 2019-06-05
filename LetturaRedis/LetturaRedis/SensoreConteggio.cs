@@ -10,9 +10,9 @@ namespace sensore
             Random random = new Random();
             if (minVal == 0)
             {
-                return random.Next(0, 20);
+                return random.Next(0, 10);
             }
-            return random.Next(-10,20);
+            return random.Next(-10,10);
         }
         public void ContatorePersone(SensorePorta sensorePorta)
         {
