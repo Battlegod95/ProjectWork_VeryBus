@@ -36,7 +36,7 @@ Una serie di esempi passo dopo passo che ti spiegano come ottenere un ambiente d
 
 ## Authors
 
-* **Filippo Mastrotto** - *Initial work* - [PurpleBooth](https://github.com/PurpleBooth)
+* **Filippo Mastrotto** 
 * **Francesca Venier** 
 * **Marco Zolli** -
 * **Emiliano Monti**
