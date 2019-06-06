@@ -1,30 +1,41 @@
 using System;
 
-namespace sensore
+namespace contatore
 {
-    class SensoreConteggio 
-    {  
-        public int count=0;
-        private int GetValue(int minVal)
+    class SensoreConteggio
+    {
+        public int variazione;
+        public int porta;
+        private int GetValue()
         {
+            int nPersone = 10;
             Random random = new Random();
-            if (minVal == 0)
+
+            if (nPersone == 0)
             {
-                return random.Next(0, 10);
+                variazione = random.Next(0, 10);
             }
-            return random.Next(-10,10);
+            else
+            {
+                while(variazione<=0)
+                {
+                variazione = random.Next(-5, 10);
+                }
+            }
+            nPersone = nPersone + variazione;
+
+            return nPersone;
+
         }
+
         public void ContatorePersone(SensorePorta sensorePorta)
         {
-            if(sensorePorta.valStatoPorta == 1)
-            {
-                count += GetValue(count);
-            }
+            porta = sensorePorta.valStatoPorta;
         }
 
         public string ToJson()
         {
-            return "{\"ContatorePersone\" :" + count + "}";
+            return "{\"ContatorePersone\" :" + GetValue() + "}";
         }
     }
 }
