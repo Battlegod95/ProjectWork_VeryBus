@@ -38,7 +38,7 @@ Una serie di esempi passo dopo passo che ti spiegano come ottenere un ambiente d
 
 * **Filippo Mastrotto** 
 * **Francesca Venier** 
-* **Marco Zolli** -
+* **Marco Zolli** 
 * **Emiliano Monti**
 * **Lorenzo Cianciolo**
 
