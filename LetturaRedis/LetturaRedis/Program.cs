@@ -13,8 +13,11 @@ namespace LetturaRedis
     class Program
     {
         static void Main(string[] args)
-        {
-            var redis = new RedisClient("127.0.0.1");
+        {	
+			string line;
+			System.IO.StreamReader file = new System.IO.StreamReader(@".\Config.txt");  	
+			line = file.ReadLine();
+            var redis = new RedisClient(line);
             Autobus auto1 = new Autobus();
             Autobus auto2 = new Autobus();
             Autobus auto3 = new Autobus();

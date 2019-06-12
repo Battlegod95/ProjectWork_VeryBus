@@ -9,21 +9,23 @@ using System.Threading.Tasks;
 
 namespace InvioRedis
 {
-    class Program
+    class Programs
     {
         static void Main(string[] args)
         {
-
+			string line;
+		System.IO.StreamReader file = new System.IO.StreamReader(@".\Config.txt");  	
+			line = file.ReadLine();
             // configure Redis
-            var redis = new RedisClient("127.0.0.1");
-
+            var redis = new RedisClient(line);
+			line = file.ReadLine();
             while (true)
             {
                 // read from Redis queue
                 //Console.WriteLine(redis.BLPop(1000, "sensors_data"));
                 //  Console.WriteLine(redis.BLPop(100, "key"));
 
-                var httpWebRequest = (HttpWebRequest)WebRequest.Create("http://127.0.0.1:3000/api/server");
+                var httpWebRequest = (HttpWebRequest)WebRequest.Create(line);
                 httpWebRequest.ContentType = "application/json";
                 httpWebRequest.Method = "POST";
 
