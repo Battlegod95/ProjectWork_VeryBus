@@ -1,5 +1,5 @@
 const fastify = require('fastify')({ 
-    logger: false, 
+    logger: true, 
     ignoreTrailingSlash: true 
 });
 
