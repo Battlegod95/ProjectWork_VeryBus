@@ -14,27 +14,29 @@ namespace LetturaRedis
     {
         static void Main(string[] args)
         {	
-			string line;
-			System.IO.StreamReader file = new System.IO.StreamReader(@".\Config.txt");  	
-			line = file.ReadLine();
-            var redis = new RedisClient(line);
+			
+            var redis = new RedisClient("127.0.0.1");
             Autobus auto1 = new Autobus();
             Autobus auto2 = new Autobus();
             Autobus auto3 = new Autobus();
             Autobus auto4 = new Autobus();
             Autobus auto5 = new Autobus();
 
-            for (int i = 0; i < 1000; i++)
+            while (true)
             {
                 Console.WriteLine("Auto 1      "+auto1.ToJson());
                 System.Threading.Thread.Sleep(50);
-             /*   Console.WriteLine("Auto 2      " + auto2.ToJson());
+                Console.WriteLine("Auto 2      " + auto2.ToJson());
                 System.Threading.Thread.Sleep(50);
                 Console.WriteLine("Auto 3      " + auto3.ToJson());
                 System.Threading.Thread.Sleep(50);
-                Console.WriteLine("Auto 4      " + auto4.ToJson());
-                System.Threading.Thread.Sleep(50);
-                Console.WriteLine("Auto 5      " + auto5.ToJson());*/
+                /*   Console.WriteLine("Auto 2      " + auto2.ToJson());
+                   System.Threading.Thread.Sleep(50);
+                   Console.WriteLine("Auto 3      " + auto3.ToJson());
+                   System.Threading.Thread.Sleep(50);
+                   Console.WriteLine("Auto 4      " + auto4.ToJson());
+                   System.Threading.Thread.Sleep(50);
+                   Console.WriteLine("Auto 5      " + auto5.ToJson());*/
 
                 redis.LPush("key", auto1.ToJson());
                 System.Threading.Thread.Sleep(50);
@@ -46,7 +48,7 @@ namespace LetturaRedis
                 redis.LPush("key", auto4.ToJson());
                 System.Threading.Thread.Sleep(50);
                 redis.LPush("key", auto5.ToJson());
-                System.Threading.Thread.Sleep(5000);
+                System.Threading.Thread.Sleep(1000);
             }
             Console.ReadLine();
         }

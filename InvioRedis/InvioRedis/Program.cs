@@ -14,37 +14,43 @@ namespace InvioRedis
         static void Main(string[] args)
         {
 			string line;
-		System.IO.StreamReader file = new System.IO.StreamReader(@".\Config.txt");  	
-			line = file.ReadLine();
+		//System.IO.StreamReader file = new System.IO.StreamReader(@".\Config.txt");  	
+		//	line = file.ReadLine();
             // configure Redis
-            var redis = new RedisClient(line);
-			line = file.ReadLine();
+            var redis = new RedisClient("127.0.0.1");
+		//	line = file.ReadLine();
             while (true)
             {
                 // read from Redis queue
                 //Console.WriteLine(redis.BLPop(1000, "sensors_data"));
                 //  Console.WriteLine(redis.BLPop(100, "key"));
 
-                var httpWebRequest = (HttpWebRequest)WebRequest.Create(line);
+                var httpWebRequest = (HttpWebRequest)WebRequest.Create("http://127.0.0.1:3000/api/server");
                 httpWebRequest.ContentType = "application/json";
                 httpWebRequest.Method = "POST";
-
-                using (var streamWriter = new StreamWriter(httpWebRequest.GetRequestStream()))
+                try
                 {
-                    string json = redis.BLPop(100, "key");
+                    using (var streamWriter = new StreamWriter(httpWebRequest.GetRequestStream()))
+                    {
+                        string json = redis.BLPop(100, "key");
 
-                     streamWriter.Write(json);
-                   // Console.WriteLine(json);
-                    streamWriter.Flush();
-                    streamWriter.Close();
+                        streamWriter.Write(json);
+                        // Console.WriteLine(json);
+                        streamWriter.Flush();
+                        streamWriter.Close();
+                    }
                 }
-
-                var httpResponse = (HttpWebResponse)httpWebRequest.GetResponse();
-                using (var streamReader = new StreamReader(httpResponse.GetResponseStream()))
+                catch { }
+                try
                 {
-                    var result = streamReader.ReadToEnd();
-                    Console.WriteLine(result);
+                    var httpResponse = (HttpWebResponse)httpWebRequest.GetResponse();
+                    using (var streamReader = new StreamReader(httpResponse.GetResponseStream()))
+                    {
+                        var result = streamReader.ReadToEnd();
+                        Console.WriteLine(result);
+                    }
                 }
+                catch { }
             }
         }
     }
