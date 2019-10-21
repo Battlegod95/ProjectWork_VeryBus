@@ -46,7 +46,7 @@ namespace LetturaRedis
                 redis.LPush("key", auto4.ToJson());
                 System.Threading.Thread.Sleep(50);
                 redis.LPush("key", auto5.ToJson());
-                System.Threading.Thread.Sleep(100);
+                System.Threading.Thread.Sleep(5000);
             }
             Console.ReadLine();
         }
