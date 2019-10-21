@@ -1,4 +1,5 @@
 using System;
+using sensore;
 
 namespace contatore
 {

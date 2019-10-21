@@ -1,5 +1,6 @@
 ﻿using sensore;
 using Simulazione_Gps;
+using contatore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
