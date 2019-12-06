@@ -4,5 +4,8 @@ module.exports = {
     },
     database: function() {
         return 'Verybus'
+    },
+        broker: function() {
+        return '192.168.101.74'
     }
 }
