@@ -4,7 +4,9 @@ const module = require('./module.js');
 let host = module.host;
 let database = module.database;
 
-//const influx = new sql.InfluxDB('http://Verybus:password@192.168.101.74:8086/Verybus');
+var mqtt = require('mqtt')
+var client  = mqtt.connect(module.broker)
+
 const influx = new sql.InfluxDB({
     host: host,
     database: database,
@@ -25,16 +27,19 @@ const influx = new sql.InfluxDB({
 var situazioneAutobus = [];
 
 async function routes(fastify, options) {
-
+/*
     fastify.get('/', async (request, reply) => {
              influx.query(`select * from DatiAutobus`)
                 .then(result => {reply.send(result)})
                 .catch(error => {reply.send(error)});        
     });
+*/
+    client.on('connect', function () {
+      client.subscribe('verybus/autobus', function (err) {
 
-    fastify.post('/', async (request, reply) => {
-        
-            
+      })
+    })
+    fastify.post('/', async (request, reply) => {    
             var targaR = request.body.targa;
             var StatoPortaR = request.body.statoporta;
             var ConteggioPersoneR = request.body.contatorepersone;
