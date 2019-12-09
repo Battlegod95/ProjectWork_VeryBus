@@ -15,19 +15,18 @@ namespace InvioRedis
     {
         static void Main(string[] args)
         {
-			string line;
-		//System.IO.StreamReader file = new System.IO.StreamReader(@".\Config.txt");  	
-		//	line = file.ReadLine();
+			string ipRedis,ipMqtt;
+		System.IO.StreamReader file = new System.IO.StreamReader(@"..\..\Config.txt");  	
+		ipRedis = file.ReadLine();
+            ipMqtt = file.ReadLine();
+
             // configure Redis
-            var redis = new RedisClient("127.0.0.1");
-            //	line = file.ReadLine();
+            var redis = new RedisClient(ipRedis);
+            
             while (true)
             {
-                // read from Redis queue
-                //Console.WriteLine(redis.BLPop(1000, "sensors_data"));
-                //  Console.WriteLine(redis.BLPop(100, "key"));
-
-                MqttClient client = new MqttClient("192.168.101.65");
+                
+                MqttClient client = new MqttClient(ipMqtt);
                 byte code = client.Connect(Guid.NewGuid().ToString());
                 ushort msgId; // creazione connessione con il broker
 

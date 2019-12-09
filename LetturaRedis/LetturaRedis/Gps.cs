@@ -24,17 +24,17 @@ namespace Simulazione_Gps
                
                 case 1:
 
-                     text = System.IO.File.ReadAllText(@"cordinatea1.txt");
+                     text = System.IO.File.ReadAllText(@"../../cordinatea1.txt");
 
                     break;
                 case 2:
 
-                     text = System.IO.File.ReadAllText(@"cordinatea2.txt");
+                     text = System.IO.File.ReadAllText(@"../../cordinatea2.txt");
 
                     break;
                 case 3:
 
-                     text = System.IO.File.ReadAllText(@"cordinatea3.txt");
+                     text = System.IO.File.ReadAllText(@"../../cordinatea3.txt");
 
                     break;
             }
