@@ -6,9 +6,8 @@ namespace contatore
     class SensoreConteggio
     {
         public int variazione;
-        public int porta;
         int nPersone = 10;
-        private int GetValue()
+        public int GetValue()       //metodo per modificare il numero di persone in maniera casuale
         {
             
             Random random = new Random();
@@ -34,14 +33,13 @@ namespace contatore
 
         }
 
-        public void ContatorePersone(SensorePorta sensorePorta)
-        {
-            porta = sensorePorta.valStatoPorta;
-        }
+        
 
-        public string ToJson()
+        public string ToJson()  //metodo per restituire il json del numero di persone nell'autobus
         {
-            return "{\"ContatorePersone\" :" + GetValue() + "}";
+            return "{\"ContatorePersone\" :" + nPersone + "}";
         }
+        
+        
     }
 }

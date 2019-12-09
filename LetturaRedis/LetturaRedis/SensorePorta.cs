@@ -7,18 +7,38 @@ namespace sensore
         // Consideriamo che:
         // False significa che la porta è chiusa
         // True significa che la porta è aperta
-
+        private bool primo = true;
         public int valStatoPorta;
-        public bool StatoPorta()
+        string stato;
+        public void StatoPorta()        //metodo che simula se una porta è aperta o chiusa
         {
-            Random random = new Random();
-            valStatoPorta = random.Next(2);
-            return (valStatoPorta==0 ? false : true);
+            if (primo != true)
+            {
+                Random random = new Random();
+                valStatoPorta = random.Next(0, 11);
+                if (valStatoPorta >= 8)
+                {
+                    stato = "true";
+
+                }
+                else
+                {
+                    stato = "false";
+
+                }
+            }
+            else
+            {
+                stato = "true";
+                primo = false;
+            }
         }
 
-        public string ToJson()
+        public string ToJson() //metodo che restituisce il json dello stato della porta
         {
-            return "{\"StatoPorta\" : " + (StatoPorta()) + "}";
+            
+            return "{\"StatoPorta\" : " + stato + "}";
         }
+        
     }
 }

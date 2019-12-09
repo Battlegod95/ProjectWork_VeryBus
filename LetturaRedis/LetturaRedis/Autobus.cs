@@ -17,26 +17,42 @@ namespace LetturaRedis
         private Gps gps;
         private SensoreConteggio persone;
         private SensorePorta porta;
-        public Autobus()
+        public Autobus(int linea)   //creazione autobus
         {
-            gps = new Gps();
+            this.linea = linea;
+            gps = new Gps(this.linea);
             persone = new SensoreConteggio();
             porta = new SensorePorta();
-            Random gen = new Random();
-            linea = gen.Next(0, 100);
+            Random gen = new Random();       
             System.Threading.Thread.Sleep(50);
             targa = gen.Next(0000, 9999);
             System.Threading.Thread.Sleep(50);
         }
         
-        public string ToJson()
+        public string ToJson()  //metodo che restituisce il json dell'autobus
+                                //se la porta è aperta chiama il metodo per modificare il numero di persone
+                                //se è chiuso mantiene il numero di persone dentro l'autobus
         {
+            porta.StatoPorta();
+            string portajson = porta.ToJson();
+            if (portajson.Contains("true") == true)
+            {
+                
+                persone.GetValue();
+                string json = "{" + gps.ToJson().ToLower().Replace("{", "").Replace("}", "") + ",";
 
-            string json = "{" + gps.ToJson().ToLower().Replace("{", "").Replace("}", "") + ",";
-            persone.ContatorePersone(porta);
-            json += persone.ToJson().Replace("{", "").ToLower().Replace("}", "").Replace(" ", "") + ",";
-            json += porta.ToJson().ToLower().Replace("{", "").Replace("}", "").Replace(" ", "") +","+"\"linea\":"+linea+ "," + "\"targa\":" + targa + "}";
-            return json;
+                json += persone.ToJson().Replace("{", "").ToLower().Replace("}", "").Replace(" ", "") + ",";
+                json += portajson.ToLower().Replace("{", "").Replace("}", "").Replace(" ", "") + "," + "\"linea\":" + linea + "," + "\"targa\":" + targa + "}";
+                return json;
+            }
+            else
+            {
+                string json = "{" + gps.ToJson().ToLower().Replace("{", "").Replace("}", "") + ",";
+                
+                json += persone.ToJson().Replace("{", "").ToLower().Replace("}", "").Replace(" ", "") + ",";
+                json += portajson.ToLower().Replace("{", "").Replace("}", "").Replace(" ", "") + "," + "\"linea\":" + linea + "," + "\"targa\":" + targa + "}";
+                return json;
+            }
         }
         
 
